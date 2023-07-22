@@ -58,40 +58,22 @@ echo <<<HTML
     }
   </style>
 
-  <div class="container px-4 py-5 px-md-5 text-center text-lg-start my-5">
+  <div class="container px-4 px-md-5 text-center text-lg-start" style="height: 100vh">
     <div class="row gx-lg-5 align-items-center mb-5">
       <div class="col-lg-6 mb-5 mb-lg-0" style="z-index: 10">
-        <h1 class="my-5 display-5 fw-bold ls-tight" style="color: hsl(218, 81%, 95%)">
-           <br />
-          <span style="color: hsl(218, 81%, 75%)"></span>
-        </h1>
-        <p class="mb-4 opacity-70" style="color: hsl(218, 81%, 85%)">
         
-        </p>
+        
       </div>
 
       <div class="col-lg-6 mb-5 mb-lg-0 position-relative">
         <div id="radius-shape-1" class="position-absolute rounded-circle shadow-5-strong"></div>
         <div id="radius-shape-2" class="position-absolute shadow-5-strong"></div>
 
-        <div class="card bg-glass">
+        <div class="card bg-glass" style= "margin-top: 1em">
           <div class="card-body px-4 py-5 px-md-5">
             <form>
               <!-- 2 column grid layout with text inputs for the first and last names -->
               <div class="row">
-                <div class="col-md-6 mb-4">
-                  <div class="form-outline">
-                    <input type="text" id="prenom" class="form-control" />
-                    <label class="form-label" for="prenom">Prénom</label>
-                  </div>
-                </div>
-                <div class="col-md-6 mb-4">
-                  <div class="form-outline">
-                    <input type="text" id="nom" class="form-control" />
-                    <label class="form-label" for="nom">Nom</label>
-                  </div>
-                </div>
-              </div>
 
               <!-- Email input -->
               <div class="form-outline mb-4">
@@ -107,17 +89,21 @@ echo <<<HTML
 
               <!-- Submit button -->
               <button type="submit" class="btn btn-primary btn-block mb-4">
-                S'inscrire
+                Se connecter
               </button>
 
               <!-- Register buttons -->
               <div class="text-center">
-                <p>Vous avez déja un compte ?</p>
+                <p>Vous n'avez pas de compte ?:</p>
+                <p>
+                  <a href="../signin/signin.php" style="text-decoration: none">
+                S'inscrire
 
-                <a href= "../login/login.php" class="btn btn-primary btn-block mb-5">
-                Se connecter
-              </a>
+                </a>
+              </p>
                 
+                
+ 
               </div>
             </form>
           </div>
@@ -128,10 +114,15 @@ echo <<<HTML
 </section>
 <!-- Section: Design Block -->
 
- 
 
-    
-    <script src="../signin/signin.js"></script>
+
+
+
+
+
+<script src="login.js"></script>
+
+
   </body>
 </html>
 

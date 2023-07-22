@@ -13,11 +13,11 @@ $("form").submit((event) => {
             pwd: $("#password").val()
         },
         success: (res) => {
-            console.log("bien recu")
+            //console.log("bien recu", res)
 
             if (res.success) {
-                localStorage.setItem("user", JSON.stringify(res.user));
-                window.location.replace("../home/Accueil.html");
+                //localStorage.setItem("user", JSON.stringify(res.user));
+                window.location.replace("../login/login.php");
             } else alert(res.error);
         }
     });
