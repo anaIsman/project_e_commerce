@@ -17,6 +17,7 @@ $user = $req->fetch(PDO::FETCH_ASSOC);
 
 
 if ($user && password_verify($_POST["pwd"], $user["pwd"])) {
+    session_start();
     $_SESSION["connected"] = true;
     $_SESSION["user_id"] = $user["id_user"];
     $_SESSION["admin"] = $user["admin"];

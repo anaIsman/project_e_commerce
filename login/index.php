@@ -96,7 +96,7 @@ echo <<<HTML
               <div class="text-center">
                 <p>Vous n'avez pas de compte ?:</p>
                 <p>
-                  <a href="../signin/signin.php" style="text-decoration: none">
+                  <a href="../signin/" style="text-decoration: none">
                 S'inscrire
 
                 </a>

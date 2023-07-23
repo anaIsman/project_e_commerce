@@ -114,7 +114,7 @@ echo <<<HTML
               <div class="text-center">
                 <p>Vous avez déja un compte ?</p>
 
-                <a href= "../login/login.php" class=" mb-3" style="text-decoration: none">
+                <a href= "../login/" class=" mb-3" style="text-decoration: none">
                 Se connecter
               </a>
                 

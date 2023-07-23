@@ -10,8 +10,8 @@ $("form").submit((event) => {
             pwd: $("#password").val()
         },
         success: (res) => {
-            console.log(res)
-            break;
+
+
 
             if (res.success) {
                 localStorage.setItem("user", JSON.stringify(res.user));

@@ -31,8 +31,8 @@ function isAdmin()
 
 function upload($file)
 {
-    if (isset($file["picture"]["name"])) {
-        $filename = $file["picture"]["name"];
+    if (isset($file["image"]["name"])) {
+        $filename = $file["image"]["name"];
 
         $location = __DIR__ . "/../../assets/$filename";
         $extension = pathinfo($location, PATHINFO_EXTENSION);
@@ -40,7 +40,7 @@ function upload($file)
 
         $valid_extensions = ["jpg", "png", "gif", "jpeg"];
         if (in_array($extension, $valid_extensions)) {
-            if (move_uploaded_file($file["picture"]["tmp_name"], $location)) return $filename;
+            if (move_uploaded_file($file["image"]["tmp_name"], $location)) return $filename;
             else return false;
         } else return false;
     } else return false;

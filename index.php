@@ -1,12 +1,9 @@
 <?php
 error_reporting(-1);
-// je vérifie si il y'a une session active = Null je demarre une session(les nombres des utilisateurs connecté)
+// je vérifie si il y'a une session active:si la session est null alors je demarre une session.
 if (session_status() === PHP_SESSION_NONE) {
-
     session_start();
-    $_ENV['coucou'] = 'Ana';
 }
-
 require_once("php/utils/cnx.database.php");
 require("php/utils/function.php");
 
