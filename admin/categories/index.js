@@ -136,8 +136,12 @@ $("form").submit(event => {
     fd.append("name_category", $("#Name").val());
 
 
-    if (id) updateArticle(fd);
-    else insertCategory(fd);
+    if (id) {
+        updateArticle(fd);
+    } else {
+        insertCategory(fd);
+    }
+
 });
 
 if (id) {
