@@ -1,5 +1,5 @@
 const urlParams = new URLSearchParams(window.location.search);
-const id = urlParams.get("id"); // Je récupère l'id de l'article à modifier dans l'url
+const id = urlParams.get("id"); // Je récupère l'id du produit à modifier dans l'url
 
 
 function getAllProducts() {
@@ -70,7 +70,7 @@ function getAllCategory() {
             //     let option = `<option value="${res.cats[i].id_category}">${res.cats[i].name_category}</option>`;
             //     selectCategorie.append(option)
             // }
-            // if (res.success) window.location.replace("../article.html"); //? Si success alors je redirige vers la liste des articles
+            // if (res.success) window.location.replace("../article.html"); // Si success alors je rédirige vers la page des produits 
 
         },
         error: function (xhr, ajaxOptions, thrownError) {
@@ -95,7 +95,7 @@ function insertArticle(fd) {
         processData: false,
         cache: false,
         success: (res) => {
-            window.location.replace("../index.php"); //? Si success alors je redirige vers la liste des articles
+            window.location.replace("../index.php"); // Si success alors je rédirige vers la liste des produits 
             // else alert(res.error);
         },
         error: function (xhr, ajaxOptions, thrownError) {
@@ -140,7 +140,7 @@ function updateArticle(fd) {
         cache: false,
         success: (res) => {
             console.log(res)
-            if (res.success) window.location.replace("../products/"); //? Si success alors je redirige vers la liste des articles
+            if (res.success) window.location.replace("../products/"); // Si success alors je rédirige vers la liste des produits
             else alert(res.error);
         },
         error: function (xhr, ajaxOptions, thrownError) {

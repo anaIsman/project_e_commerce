@@ -28,6 +28,7 @@ function getAllOrders() {
                     <td>${order.total_products} produits</td>
                     <td>
                     
+                    <a href="view.php?id=${order.id_order}">Afficher commande</a>
                     <a href="${order.statut==0 ? 'form.php?id='+order.id_order : '#'}" >${order.statut==0 ? 'valider' : 'validé'}</a>
                     </td>
                 </tr>
@@ -46,19 +47,42 @@ function getAllOrders() {
 }
 
 if (id) {
-    $.ajax({
-        url: "../../php/admin_orders.php",
-        type: "GET",
-        //dataType: "json",
-        data: {
-            choisir: "validate",
-            id: id
-        },
-        success: (res) => {
-            window.location.replace("../orders/");
-        },
-        error: function (xhr, ajaxOptions, thrownError) {
-            console.log("what is the problem", thrownError)
-        }
-    });
+
+
+
+    if ("view.php".indexOf(window.location.pathname)) {
+        $.ajax({
+            url: "../../php/admin_orders.php",
+            type: "GET",
+            dataType: "json",
+            data: {
+                choisir: "select_id",
+                id_order: id
+            },
+            success: (res) => {
+                console.log(res)
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                console.log("what is the problem", thrownError)
+            }
+        });
+    } else {
+        $.ajax({
+            url: "../../php/admin_orders.php",
+            type: "GET",
+            //dataType: "json",
+            data: {
+                choisir: "validate",
+                id: id
+            },
+            success: (res) => {
+                window.location.replace("../orders/");
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                console.log("what is the problem", thrownError)
+            }
+        });
+    }
+
+
 } else {}

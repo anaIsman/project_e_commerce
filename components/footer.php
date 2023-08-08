@@ -8,19 +8,19 @@
             <hr>
             <div>
                 <a href="">
-                    <img src="images/fb.png" alt="">
+                    <img src="../assets/front-img/fb.png" alt="">
                 </a>
             </div>
             <hr>
             <div>
                 <a href="">
-                    <img src="images/twitter.png" alt="">
+                    <img src="../assets/front-img/twitter.png" alt="">
                 </a>
             </div>
             <hr>
             <div>
                 <a href="">
-                    <img src="images/insta.png" alt="">
+                    <img src="../assets/front-img/insta.png" alt="">
                 </a>
             </div>
             <hr>

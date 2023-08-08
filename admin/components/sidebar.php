@@ -21,6 +21,13 @@
                     <span> Dashboard</span>
                 </a>
             </li>
+
+            <li class="">
+                <a href="../orders/">
+                    <i class="fa fa-shopping-cart"></i>
+                    <span> Commandes</span>
+                </a>
+            </li>
             <li class="">
                 <a href="../products/">
                     <i class="fa fa-shopping-bag"></i>
@@ -28,9 +35,9 @@
                 </a>
             </li>
             <li class="">
-                <a href="../orders/">
-                    <i class="fa fa-shopping-cart"></i>
-                    <span> Commandes</span>
+                <a href="../categories/">
+                    <i class="fa fa-tags"></i>
+                    <span> Catégories</span>
                 </a>
             </li>
             <li class="">

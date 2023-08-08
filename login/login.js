@@ -12,11 +12,14 @@ $("form").submit((event) => {
         success: (res) => {
 
 
-
             if (res.success) {
                 localStorage.setItem("user", JSON.stringify(res.user));
                 window.location.replace("../home");
             } else alert(res.error);
+        },
+
+        error: function (xhr, ajaxOptions, thrownError) {
+            console.log("what is the problem", thrownError)
         }
     });
 });

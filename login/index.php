@@ -6,7 +6,7 @@ echo <<<HTML
   <head>
     <meta charset="UTF-8" />
     <title>Inscription</title>
-    <link rel="stylesheet" href="signin.css" />
+    <link rel="stylesheet" href="login.css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="">
@@ -83,7 +83,7 @@ echo <<<HTML
 
               <!-- Password input -->
               <div class="form-outline mb-4">
-                <input type="password" id="password" class="form-control" />
+                <input type="password" id="password" class="form-control"   />
                 <label class="form-label" for="password">Mot de passe</label>
               </div>
 

@@ -3,34 +3,57 @@ error_reporting(-1);
 require_once("../php/utils/cnx.database.php");
 require("../php/utils/function.php");
 
-// J'appelle ma fonction pour savoir si mon utilisateur est connecté
+
 isConnected();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") $method = $_POST;
 else $method = $_GET;
 
 
+
 switch ($method["choisir"]) {
 
 
     case "select_id":
-        // Je selectionne tous les produits(tous les colonnes) ainsi que les catégories en fonction de leur id dans les produits.
-        $stmt = $bdd->prepare("SELECT * FROM products  where id_product = :id_product ");
-        $stmt->bindValue(":id_product", $method['id_product'], PDO::PARAM_INT);
+
+        /**
+         * Je selectionne une commande selon son id, et je concatène le nom et le prenom de l'utilisateur comme 
+         * client.  
+         * 
+         */
+        $stmt = $bdd->prepare("SELECT o.*, concat(u.firstname, ' ', u.lastname) as client  
+                                FROM orders as o 
+                                INNER JOIN users u ON u.id_user = o.id_user 
+                                where id_order = :id_order ");
+        $stmt->bindValue(":id_order", $method['id_order'], PDO::PARAM_INT);
         $stmt->execute();
-        $product = $stmt->fetch(PDO::FETCH_ASSOC);
-        // Je retourne tous les produits avec un message success
-        echo json_encode(["success" => true, "product" => $product]);
+        $order = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        /**
+         * Je selectionne tous les products et la quantité  commandé de la table product_order.
+         * Je fais une jointure direct entre l'id_produit sur la table product et 
+         * l'id_product sur la table product_order.
+         */
+        $stmt = $bdd->prepare("SELECT p.*, po.quantity 
+                                FROM product_order po 
+                                INNER JOIN products p ON po.id_product = p.id_product 
+                                WHERE po.id_order = :id_order");
+        $stmt->bindValue(":id_order", $method['id_order'], PDO::PARAM_INT);
+        $stmt->execute();
+        $order["products"] = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        echo json_encode(["success" => true, "order" => $order]);
         break;
+
     case "select":
         // Je selectionne tous les produits(tous les colonnes) ainsi que les catégories en fonction de leur id dans les produits.
         $stmt = $bdd->query("SELECT o.*, concat(u.firstname, ' ', u.lastname) as client, count(po.id_order) AS total_products 
                         FROM orders o 
                         LEFT JOIN product_order po ON po.id_order = o.id_order 
-                        INNER JOIN users u on u.id_user =o.id_user
+                        INNER JOIN users u ON u.id_user =o.id_user
                         GROUP BY (po.id_order) DESC
                         ");
-        // J'affecte la totalité de mes résultats à la variable $products
+        // J'affecte la totalité de mes résultats à la variable $orders
         $orders = $stmt->fetchAll(PDO::FETCH_ASSOC);
         // Je retourne tous les produits avec un message success
         echo json_encode(["success" => true, "orders" => $orders]);
@@ -66,14 +89,14 @@ switch ($method["choisir"]) {
             die;
         }
 
-        if (!isset($method["id_product"]) || empty(trim($method["id_product"]))) {
+        if (!isset($method["id_order"]) || empty(trim($method["id_order"]))) {
             echo json_encode(["success" => false, "error" => "Id manquant"]);
             die;
         }
 
         // J'écris une requete préparée de suppression du product en fonction de son id.
-        $stmt = $bdd->prepare("DELETE FROM orders WHERE id = ? ");
-        $stmt->execute($method["id_order"]);
+        $stmt = $bdd->prepare("DELETE FROM orders WHERE id_order = ? ");
+        $stmt->execute([$method["id_order"]]);
         if ($stmt->rowCount()) echo json_encode(["success" => true]);
         else echo json_encode(["success" => false, "error" => "Erreur de suppression"]);
         break;
