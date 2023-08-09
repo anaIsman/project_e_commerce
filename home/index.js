@@ -1,3 +1,40 @@
+let productCart = [];
+if (localStorage.getItem("productCart") !== null) {
+    productCart = JSON.parse(localStorage.getItem("productCart"));
+    if(productCart.length > 0) {
+        document.getElementById('cart-badge').innerHTML = productCart.length.toString();
+    }
+}
+function addToCart(product) {
+    event.preventDefault();
+    product = JSON.parse(product);
+    if (!product.hasOwnProperty('quantity')) {
+        product.quantity = 1;
+    }
+
+    let existingProduct = null;
+    for (let i = 0; i < productCart.length; i++) {
+        if (productCart[i].id_product === product.id_product) {
+            existingProduct = productCart[i];
+            break;
+        }
+    }
+    console.log(existingProduct)
+
+    if (existingProduct) {
+        existingProduct.quantity += 1;
+    } else {
+        productCart.push(product);
+    }
+
+    document.getElementById('cart-badge').innerHTML = productCart.length.toString();
+
+    localStorage.setItem("productCart", JSON.stringify(productCart));
+}
+
+
+
+
 function getAllProducts() {
 
     $.ajax({
@@ -12,9 +49,9 @@ function getAllProducts() {
         success: (res) => {
             console.log(res)
             for (let i = 0; i < res.products.length; i++) {
-                pr = res.products[i];
+                let pr = res.products[i];
                 let productBox = `<div class="box">
-                    <a href="">
+                    <a href="javascript:void(0)">
                         <div class="img-box">
                         <img src="../assets/${pr.product_picture}" alt="">
                         </div>
@@ -29,37 +66,20 @@ function getAllProducts() {
                             </span>
                         </h6>
                         </div>
-                        <div class="new">
-                        <span>
-                            New
+                        <div class="new" id="${"new_" + pr.id_product}">
+                        <span >
+                            +
                         </span>
                         </div>
                     </a>
                     </div>`;
                 document.getElementById('shop_container').insertAdjacentHTML("afterbegin", productBox)
+
+                document.getElementById('new_'+ pr.id_product).addEventListener("click", function(e){
+                    e.preventDefault();
+                    addToCart(JSON.stringify(pr))
+                })
             }
-
-
-
-
-
-            // for (let i = 0; i < res.products.length; i++) {
-            //     pr = res.products[i];
-            //     let tr = `
-            //     <tr>
-            //         <td>${pr.id_product}</td>
-            //         <td>${pr.product_name}</td>
-            //         <td><img class="img-fluid" src="../../assets/${pr.product_picture}" /></td>
-            //         <td>${pr.description}</td>
-            //         <td>${pr.product_quantity}</td>
-            //         <td>${pr.product_price}</td>
-            //         <td>${pr.category}</td>
-            //         <td><a href="form.php?id=${pr.id_product}"><i class="fa fa-edit"></i></a></td>
-            //     </tr>
-            // `;
-            //     $("#products_tbody").append(tr)
-            // }
-
 
 
         },

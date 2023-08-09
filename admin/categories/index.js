@@ -44,6 +44,7 @@ function getAllcategories() {
 
 
 function insertCategory(fd) {
+    event.preventDefault();
     fd.append("choisir", "insert");
 
     $.ajax({

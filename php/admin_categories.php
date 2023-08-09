@@ -28,7 +28,6 @@ switch ($method["choisir"]) {
 
         $stmt = $bdd->prepare("INSERT INTO categories(name_category) VALUE (:name_category) ; ");
         $stmt->bindValue(":name_category", $method["name_category"]);
-        $stmt->execute();
         if ($stmt->execute()) {
             echo json_encode(["success" => true]);
         } else {
@@ -53,14 +52,14 @@ switch ($method["choisir"]) {
 
     case 'update':
 
-        if (!isset($method["name_category"],  $method["id_category"]) || empty(trim($method["name_category"]))) {
+        if (!isset($method["name_category"], $method["id_category"]) || empty(trim($method["name_category"]))) {
             echo json_encode(["success" => false, "error" => $method]);
             die;
         }
 
         $stmt = $bdd->prepare("UPDATE categories SET name_category = :name_category WHERE id_category = :id_category");
         $stmt->bindValue(":name_category", $method["name_category"]);
-        $stmt->bindValue(":id_category", $method["id_category"]);;
+        $stmt->bindValue(":id_category", $method["id_category"]);
 
         if ($stmt->execute()) {
             echo json_encode(["success" => true]);
@@ -78,7 +77,7 @@ switch ($method["choisir"]) {
         }
 
         $stmt = $bdd->prepare("DELETE FROM categories  WHERE id_category = :id_category");
-        $stmt->bindValue(":id_category", $method["id_category"]);;
+        $stmt->bindValue(":id_category", $method["id_category"]);
 
         if ($stmt->execute()) {
             echo json_encode(["success" => true]);
@@ -87,4 +86,8 @@ switch ($method["choisir"]) {
         }
 
         break;
-};
+    default:
+
+        echo json_encode(["success" => false, "error" => "Mauvaise requête"]);
+        break;
+}

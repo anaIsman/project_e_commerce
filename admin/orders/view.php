@@ -3,7 +3,6 @@ include_once("../components/admin_header.php");
 //include_once("../../php/admin_products.php");
 
 
-
 /********************************************************* */
 // isAdmin j' affiche l'interface de l'administrateur (dashbaord)
 ?>
@@ -23,49 +22,47 @@ include_once("../components/admin_header.php");
 
 <body class="sidebar-menu-collapsed">
 
-    <?php
-    include_once("../components/sidebar.php");
-    include_once("../components/topbar.php");
+<?php
+include_once("../components/sidebar.php");
+include_once("../components/topbar.php");
 
 
-
-
-
-    ?>
-    <div class="main-content" style="padding-top: 50px;">
-        <div class="container-fluid content-top-gap">
-            <div class="row">
-                <div class="card" style="width: 100%;">
-                    <div class="card-body">
-
+?>
+<div class="main-content" style="padding-top: 50px;">
+    <div class="container-fluid content-top-gap">
+        <div class="row">
+            <div class="card" style="width: 49%;">
+                <div class="card-body">
+                    <div class="order_details">
 
                     </div>
                 </div>
-
             </div>
-        </div>
+            <div class="card" style="width: 49%;">
+                <div class="card-body">
+                    <div class="order_products">
 
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
     </div>
 
+</div>
+<script src="../js/jquery.js"></script>
+<script src="../js/utile.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="../js/nicescroll.js"></script>
+<script src="../js/script.js"></script>
+<script src="index.js"></script>
 
 
-    <script src="../js/jquery.js"></script>
-    <script src="../js/utile.js"></script>
+<script defer>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="../js/nicescroll.js"></script>
-    <script src="../js/script.js"></script>
-    <script src="index.js"></script>
-
-
-    <script defer>
-
-    </script>
-
-
-
-
-
+</script>
 
 
 </body>

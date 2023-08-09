@@ -60,7 +60,40 @@ if (id) {
                 id_order: id
             },
             success: (res) => {
-                console.log(res)
+                if(res.success){
+                    let containerDetails = document.querySelector('.order_details')
+
+                    let orderClientTag = `<div>Client : ${res.order.client}</div>`;
+                    let orderDateTag = `<div>Date : ${res.order.date_order}</div>`;
+                    let orderStatusTag = `<div>Statut : ${res.order.statut==1?"Validée":"En attente"}</div>`;
+
+                    containerDetails.innerHTML = orderClientTag + orderDateTag + orderStatusTag;
+
+                    let containerProds = document.querySelector('.order_products')
+
+                    for (let i=0; i<res.order.products.length; i++){
+                        let pr = res.order.products[i]
+                        console.log(pr)
+
+                        let prDescription = `<div> ${pr.description}</div>`;
+                        let prProductName = `<div class="title-prod"> ${pr.product_name}</div>`;
+                        let prProductPicture = `<img class="img-fluid-2" src="../../assets/${pr.product_picture}" />`;
+                        let prProductPrice = `<div>Prix : ${pr.product_price}</div>`;
+                        let prProductQuantity = `<div>Quantité produit en stock : ${pr.product_quantity}</div>`;
+                        let prQuantity = `<div>Quantité commandée : ${pr.quantity}</div>`;
+
+                        let prDiv = `<div class="card-prod">
+                                                <div class="card-prod-img">${prProductPicture}</div>
+                                                <div class="card-prod-details">
+                                                    ${prProductName}
+                                                    ${prDescription}
+                                                    ${prQuantity}
+                                                    <div class="span-prod">${prProductPrice} ${prProductQuantity}</div>
+                                                </div>
+                                            </div>`;
+                        containerProds.insertAdjacentHTML("beforeend", prDiv)
+                    }
+                }
             },
             error: function (xhr, ajaxOptions, thrownError) {
                 console.log("what is the problem", thrownError)

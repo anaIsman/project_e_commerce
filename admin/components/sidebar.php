@@ -7,7 +7,7 @@
 
 
     <div class="logo-icon text-center">
-        <a href="index.html" title="logo"><img src="../../assets/logo.png" alt="logo-icon"> </a>
+        <a href="../dashboard/" title="logo"><img src="../../assets/logo.png" alt="logo-icon"> </a>
     </div>
     <!-- //logo end -->
 

@@ -10035,4 +10035,11 @@ a.text-dark:hover, a.text-dark:focus {
     border-color: #dee2e6;
   }
 }
+
+.custom_nav-containe{
+  justify-content: center !important;
+}
+.navbar a{
+  margin: 0 .5em;
+}
 /*# sourceMappingURL=bootstrap.css.map */
