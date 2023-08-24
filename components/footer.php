@@ -27,8 +27,8 @@
         </div>
     </div>
     <p>
-        &copy; 2020 All Rights Reserved. Design by
-        <a href="https://html.design/">Free Html Templates</a>
+        &copy; 2023 All Rights Reserved. by HIDO YEELO
+
     </p>
 </footer>
 <!-- footer section -->

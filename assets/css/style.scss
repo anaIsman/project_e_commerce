@@ -103,7 +103,7 @@ p {
 .hero_area {
   height: 100vh;
   position: relative;
-  background-image: url(../images/hero-bg.jpg);
+  background-image: url(../front-img/flower.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -465,7 +465,7 @@ a:focus {
     z-index: 9;
 
     .box {
-      flex: 1;
+      /*flex: 1;*/
       margin: 20px 0;
       min-width: 120px;
 
@@ -572,7 +572,7 @@ a:focus {
       .img-box {
         display: flex;
         justify-content: center;
-        height: 275px;
+        height: 300px;
 
         img {
           height: 100%;

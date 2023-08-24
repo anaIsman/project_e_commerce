@@ -142,7 +142,7 @@
 }
 
 .custom_nav-container{
-    justify-content: center !important;
+    justify-content: space-between !important;
 }
 .navbar a{
     margin: 0 .5em;

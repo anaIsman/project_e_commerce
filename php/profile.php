@@ -6,7 +6,7 @@ require_once("../php/utils/cnx.database.php");
 require("../php/utils/function.php");
 
 isConnected();
-isAdmin();
+//isAdmin();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST")  $method = $_POST;
 else $method = $_GET;
@@ -19,6 +19,28 @@ switch ($method["choisir"]) {
 
         echo json_encode(["success" => true, "user" => $user]);
         break;
+
+    case 'order':
+
+        $stmt = $bdd->prepare("SELECT * FROM orders WHERE id_user = :id");
+
+        $stmt->bindValue(":id", $method["user_id"]);
+        $stmt->execute();
+
+        $orders = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        foreach ($orders as $key => $order) {
+            $stmt = $bdd->prepare("SELECT * FROM product_order inner join products on products.id_product=product_order.id_product WHERE product_order.id_order = :id");
+            $stmt->bindValue(":id", $order["id_order"]);
+            $stmt->execute();
+            $orders[$key]["products"] = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
+
+
+
+
+        echo json_encode(["success" => true, "orders" => $orders]);
+        break;
+
 
     case 'update_pwd':
         if ($_SERVER["REQUEST_METHOD"] != "POST") {
