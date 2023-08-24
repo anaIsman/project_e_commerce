@@ -53,6 +53,14 @@ if (localStorage.getItem("productCart") !== null) {
             rangeQty.max = pr.product_quantity
             rangeQty.value = pr.quantity
 
+            rangeQty.addEventListener("change", function () {
+                spanQty.innerText = rangeQty.value
+                pr.quantity = rangeQty.value
+                localStorage.setItem("productCart", JSON.stringify(productCart));
+
+
+            })
+
             divQty.appendChild(labelQty)
             divQty.appendChild(spanQty)
             divQty.appendChild(rangeQty)
@@ -64,6 +72,43 @@ if (localStorage.getItem("productCart") !== null) {
             document.getElementById("product_container").appendChild(productBox)
 
         }
+
+        let buttonValiderPanier = document.createElement("button")
+        buttonValiderPanier.textContent = "Valider le panier"
+        buttonValiderPanier.classList.add("btn")
+        buttonValiderPanier.classList.add("btn-info")
+
+        buttonValiderPanier.addEventListener("click", function () {
+            if (productCart.length > 0) {
+                let user = localStorage.getItem("user")
+                if (user == null) {
+                    return;
+                }
+                user = JSON.parse(user)
+                console.log(user)
+
+                $.ajax({
+                    url: "../php/orders.php",
+                    type: "GET",
+                    data: {
+                        user: user,
+                        choisir: "insert",
+                        panier: productCart,
+
+                    },
+                    //contentType: "application/json",
+                    //dataType: "json",
+                    //cache: false,
+                    success: (res) => {
+                        console.log(res)
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
+                        console.log("what is the problem", thrownError)
+                    }
+                });
+            }
+        })
+
+        document.getElementById("product_container").insertAdjacentElement('afterend', buttonValiderPanier)
     }
 }
-

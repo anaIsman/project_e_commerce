@@ -20,18 +20,20 @@
                 <?php endif ?>
                 <a href="../profile/">Profil</a>
 
-
-                <a href="../login/logout.php">Déconnexion</a>
             <?php else : ?>
 
                 <?php header("location: ../login/") ?>
             <?php endif ?>
             <?php if (isset($_SESSION["connected"]) && $_SESSION["connected"]) : ?>
-               <div>
-                   <a href="../panier/">
-                       CART <span class="cart-badge" id="cart-badge"></span>
-                   </a>
-               </div>
+                <div>
+
+
+                    <a href="../panier/" class="cart-icon">
+                        <img src="../assets/cart.png" alt="">
+                        <span class="cart-badge" id="cart-badge"></span>
+                    </a>
+                    <a href="../login/logout.php">Déconnexion</a>
+                </div>
 
             <?php endif; ?>
 

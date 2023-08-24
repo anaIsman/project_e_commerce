@@ -4,7 +4,7 @@ require_once("../php/utils/cnx.database.php");
 require("../php/utils/function.php");
 
 isConnected();
-//isAdmin();
+isAdmin();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") $method = $_POST;
 else $method = $_GET;

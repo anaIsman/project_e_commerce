@@ -1,8 +1,9 @@
 <?php
-error_reporting(-1);
+error_reporting(-1); // Affichage de toutes les erreurs. 
 require_once("../php/utils/cnx.database.php");
 require("../php/utils/function.php");
 
+// Vérification de la méthode.
 if ($_SERVER["REQUEST_METHOD"] != "POST") {
     echo json_encode(["success" => false, "error" => "Méthode non permise"]);
     die;

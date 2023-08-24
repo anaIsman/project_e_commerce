@@ -860,4 +860,17 @@ a:focus {
 .footer_section a {
   color: #fefdfc;
 }
+
+span#cart-badge {
+  position: absolute;
+  top: -65%;
+  right: 0;
+  padding: .3em;
+  background-color: #fff;
+  border-radius: 10px;
+}
+
+a.cart-icon {
+  position: relative;
+}
 /*# sourceMappingURL=style.css.map */

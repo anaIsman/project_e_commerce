@@ -3,22 +3,16 @@ error_reporting(-1);
 require_once("../php/utils/cnx.database.php");
 require("../php/utils/function.php");
 
-// J'appelle ma fonction pour savoir si mon utilisateur est connecté
 isConnected();
+
+
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") $method = $_POST;
 else $method = $_GET;
 
 
 switch ($method["choisir"]) {
-    case "select_cat":
-        // Je selectionne tous les catégories.
-        $stmt = $bdd->query("SELECT * from categories");
-        // J'affecte la totalité de mes résultats à la variable $cat //
-        $cat = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        // Je retourne tous les produits avec un message success
-        echo json_encode(["success" => true, "cats" => $cat]);
-        break;
+
 
     case "select_id":
         // Je selectionne tous les produits(tous les colonnes) ainsi que les catégories en fonction de leur id dans les produits.
@@ -39,6 +33,7 @@ switch ($method["choisir"]) {
         break;
 
     case "insert":
+        isAdmin();
         if ($_SERVER["REQUEST_METHOD"] != "POST") {
             echo json_encode(["success" => false, "error" => "Méthode non permise"]);
             die;
@@ -46,7 +41,7 @@ switch ($method["choisir"]) {
         if (
             !isset($method["name"], $method["desc"],  $method["quantite"],  $method["prix"], $method["id_category"])  || empty(trim($method["name"]))  || empty(trim($method["desc"])) || empty(trim($method["quantite"])) || empty(trim($method["prix"]))  || empty(trim($method["id_category"]))
         ) {
-            // Si tous ces paramétre n'existent alors j'envoie une réponse success false.
+            // Si tous ces paramètres n'existent alors j'envoie une réponse success false.
             echo json_encode(["success" => false, "error" => "Données manquantes"]);
             die;
         }
@@ -76,6 +71,7 @@ switch ($method["choisir"]) {
         break;
 
     case "update":
+        isAdmin();
         if ($_SERVER["REQUEST_METHOD"] != "POST") {
 
             echo json_encode(["success" => false, "error" => "Méthode non permise"]);

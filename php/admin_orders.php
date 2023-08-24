@@ -5,6 +5,7 @@ require("../php/utils/function.php");
 
 
 isConnected();
+isAdmin();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") $method = $_POST;
 else $method = $_GET;
@@ -16,11 +17,6 @@ switch ($method["choisir"]) {
 
     case "select_id":
 
-        /**
-         * Je selectionne une commande selon son id, et je concatène le nom et le prenom de l'utilisateur comme 
-         * client.  
-         * 
-         */
         $stmt = $bdd->prepare("SELECT o.*, concat(u.firstname, ' ', u.lastname) as client  
                                 FROM orders as o 
                                 INNER JOIN users u ON u.id_user = o.id_user 
@@ -29,11 +25,6 @@ switch ($method["choisir"]) {
         $stmt->execute();
         $order = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        /**
-         * Je selectionne tous les products et la quantité  commandé de la table product_order.
-         * Je fais une jointure direct entre l'id_produit sur la table product et 
-         * l'id_product sur la table product_order.
-         */
         $stmt = $bdd->prepare("SELECT p.*, po.quantity 
                                 FROM product_order po 
                                 INNER JOIN products p ON po.id_product = p.id_product 
@@ -45,8 +36,10 @@ switch ($method["choisir"]) {
         echo json_encode(["success" => true, "order" => $order]);
         break;
 
+
+
     case "select":
-        // Je selectionne tous les produits(tous les colonnes) ainsi que les catégories en fonction de leur id dans les produits.
+
         $stmt = $bdd->query("SELECT o.*, concat(u.firstname, ' ', u.lastname) as client, count(po.id_order) AS total_products 
                         FROM orders o 
                         LEFT JOIN product_order po ON po.id_order = o.id_order 

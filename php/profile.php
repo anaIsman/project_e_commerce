@@ -31,9 +31,7 @@ switch ($method["choisir"]) {
             die;
         }
 
-        // je vérifie si l'ancien mot de passe correspond au mot de passe dans la base de donnée 
-        // puis je vérifie si le new mot de passe correspond au confirmation du mot de passe si les deux mot de passe ne sont pas identifiques j'affiche un message d'erreur.
-        // ensuite si les conditions de pwd sont respectées, je fais une mise à jour du mot de passe.
+
 
         $stmt = $bdd->prepare("SELECT pwd FROM users WHERE id_user = :id");
         $stmt->bindvalue(":id", $method["user_id"]);
